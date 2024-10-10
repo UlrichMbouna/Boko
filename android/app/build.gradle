@@ -1,0 +1,45 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.boko"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.boko"  // Identifiant unique de l'application
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        
+        // Définir les placeholders pour l'authentification et le nom de l'application
+        manifestPlaceholders = [
+            appAuthRedirectScheme: "com.example.boko", // Remplacez par votre schéma d'authentification
+            applicationName: "com.example.boko.MyApplication" // Remplacez par le nom complet de votre classe Application
+        ]
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug  // Configuration de signature pour la build release
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
